@@ -12,7 +12,7 @@ import os
 
 Driver = None  # Variável global para armazenar o WebDriver
 
-def getDriver():
+def getDriver(url):
     global Driver
     if Driver is None:
         print(f"[INFO].{time.time()}...ABRINDO NAVEGADOR")
@@ -36,7 +36,7 @@ def getDriver():
             Driver.set_script_timeout(120)
 
             # Acessar o site
-            Driver.get("https://www.alelofrota.com.br/login")
+            Driver.get(url)
             
             # Espera até que o botão de aceitar cookies esteja presente e clicável
             try:

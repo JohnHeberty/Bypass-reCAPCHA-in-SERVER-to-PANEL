@@ -60,18 +60,24 @@ git clone https://github.com/JohnHeberty/Bypass-reCAPCHA-in-SERVER-to-PANEL.git
 cd Bypass-reCAPCHA-in-SERVER-to-PANEL
 ```
 
-### 2️⃣ **Instalação do requirement**
+### 2️⃣ **Atualize a URL do reCAPCHA**
+```sh
+Abra o .env no editor de sua preferencia
+atualize a URL
+```
+
+### 3️⃣ **Instalação do requirement**
 ```sh
 pip install -r requirements.txt
 ```
-Agora sua senha foi alterada com sucesso! 🚀
 
-### 3️⃣ **Suba o Client**
+### 4️⃣ **Suba o Client**
 ```sh
 cd Client
 python client.py
+
 ```
-### 4️⃣ **Suba o Server**
+### 5️⃣ **Suba o Server**
 ```sh
 cd Server
 python server.py

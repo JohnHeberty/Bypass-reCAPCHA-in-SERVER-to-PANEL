@@ -11,5 +11,7 @@ configClient    = {
 configServer       = {
     "IP":       os.getenv("IP"),
     "PORT":     os.getenv("PORT"),
-    "TIMEOUT":  os.getenv("PORT")
+    "URL":      os.getenv("URL"),
+    "TIMEOUT":  os.getenv("PORT"),
+    
 }

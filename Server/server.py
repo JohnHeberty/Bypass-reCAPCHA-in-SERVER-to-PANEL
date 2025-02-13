@@ -43,7 +43,7 @@ def receiveCoordinateServer():
 # select.offsetHeight 
 app.route("/", methods=["GET"])
 def EnviarImage():
-    TempSave.Driver = getDriver()
+    TempSave.Driver = getDriver(configServer["URL"])
     while True:
         if TempSave.Driver:
             try:
