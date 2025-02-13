@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagem Atualizada</title>
+    <script>
+        function atualizarImagem() {
+            var img = document.getElementById("imagem");
+            var timestamp = new Date().getTime();
+            img.onload = function() {
+                const parentDoc = window.parent.document; // Acessa o documento principal
+                let frame       = parentDoc.querySelector("#Frama-reCAPTCHA")
+                frame.width     = this.width + 20
+                frame.height    = this.height + 20
+            }
+            img.src = "/static/reCAPTCHA.png?v=" + timestamp;
+        }
+        function enviarCoordenadas(x, y) {
+            fetch('/receiveCoordinateClient', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ Width: x, Height: y })
+            })
+            .then(response => response.json())
+            .then(data => console.log("Coordenadas salvas:", data))
+            .catch(error => console.error("Erro:", error));
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            var img = document.getElementById("imagem");
+            img.addEventListener("click", function(event) {
+                var rect = img.getBoundingClientRect();
+                var x = event.clientX - rect.left; // Coordenada X relativa à imagem
+                var y = event.clientY - rect.top;  // Coordenada Y relativa à imagem
+                console.log("Clique em:", x, y);
+                enviarCoordenadas(x, y);
+            });
+        });
+        setInterval(atualizarImagem, 500); // Atualiza a cada x ms segundos
+    </script>
+</head>
+<body>
+    <img id="imagem" src="/static/reCAPTCHA.png" alt="Imagem Atualizada" style="cursor: crosshair;">
+</body>
+</html>
